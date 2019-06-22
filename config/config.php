@@ -1,0 +1,8 @@
+<?php
+
+/*
+ * Package configuration
+ */
+return [
+
+];

@@ -1,0 +1,55 @@
+{
+    "name": "richardstyles/pokemon",
+    "description": "A Laravel wrapper for a Pokemon API",
+    "keywords": [
+        "richardstyles",
+        "pokemon"
+    ],
+    "homepage": "https://github.com/richardstyles/pokemon",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Richard Styles",
+            "email": "richardstyles@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "5.8.*",
+        "lmerotta/phpokeapi": "^1.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.8.*",
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "RichardStyles\\Pokemon\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RichardStyles\\Pokemon\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RichardStyles\\Pokemon\\PokemonServiceProvider"
+            ],
+            "aliases": {
+                "Pokemon": "RichardStyles\\Pokemon\\PokemonFacade"
+            }
+        }
+    }
+}
