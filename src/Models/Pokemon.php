@@ -22,9 +22,7 @@ class Pokemon extends Model
 
     public function getDetail()
     {
-        PokemonFacade::detail($this);
-
-        return $this;
+        return PokemonFacade::detail($this);
     }
 
     public function cacheKey()
