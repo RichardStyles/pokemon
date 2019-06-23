@@ -77,7 +77,7 @@ class Pokemon
     {
         if (Cache::has($model->cacheKey())) {
             $attributes = Cache::get($model->cacheKey());
-            return new PokemonModel(json_decode($attributes, true));
+            return $model->forceFill(json_decode($attributes, true));
         }
         $attributes = $this->call(PokemonModel::class, '/'.$model->name);
 
