@@ -1,8 +1,0 @@
-<?php
-
-/*
- * Package configuration
- */
-return [
-
-];

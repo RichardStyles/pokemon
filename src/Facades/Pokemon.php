@@ -1,13 +1,13 @@
 <?php
 
-namespace RichardStyles\Pokemon;
+namespace RichardStyles\Pokemon\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \RichardStyles\Pokemon\Pokemon
  */
-class PokemonFacade extends Facade
+class Pokemon extends Facade
 {
     /**
      * Get the registered name of the component.

@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "guzzlehttp/guzzle": "~6.0",
         "illuminate/support": "5.8.*",
         "lmerotta/phpokeapi": "^1.1"
     },
