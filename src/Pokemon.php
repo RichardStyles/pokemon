@@ -52,20 +52,19 @@ class Pokemon
      */
     public function all()
     {
-        if (Cache::has('pokemon')) {
-            $cached = Cache::get('pokemon');
-            $cachedDecoded = json_decode($cached, true);
-            $results = $cachedDecoded['results'];
+        if (Cache::has('all.pokemon')) {
+            $cached = Cache::get('all.pokemon');
+            $results = collect(json_decode($cached, true));
         }else {
             $data = $this->call(PokemonModel::class);
-            $results = $data['results'];
+            $results = collect($data['results']);
+            Cache::put('all.pokemon', $results->toJson());
         }
-        $results = collect($results);
 
         $results = $results->map(function ($attributes) {
             return new PokemonModel($attributes);
         });
-        Cache::put('pokemon', $results->toJson());
+
 
         return $results;
     }

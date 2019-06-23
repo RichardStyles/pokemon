@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\File;
 
 class AllPokemonTest extends TestCaseWithApiCall
 {
+
+    protected $allCached;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->stub = File::get(__DIR__.'/stubs/all.json');
+        $this->allCached = File::get(__DIR__.'/stubs/all-cached.json');
     }
 
     /** @test */
@@ -20,7 +24,7 @@ class AllPokemonTest extends TestCaseWithApiCall
     {
         Cache::shouldReceive('has')
             ->once()
-            ->with('pokemon')->andReturn(false);
+            ->with('all.pokemon')->andReturn(false);
 
         Cache::shouldReceive('put')->andReturnTrue();
 
@@ -36,7 +40,7 @@ class AllPokemonTest extends TestCaseWithApiCall
     {
         Cache::shouldReceive('has')
             ->once()
-            ->with('pokemon')->andReturn(false);
+            ->with('all.pokemon')->andReturn(false);
 
         Cache::shouldReceive('put')->andReturnTrue();
         // first call does not exist in cache
@@ -44,8 +48,10 @@ class AllPokemonTest extends TestCaseWithApiCall
 
         Cache::shouldReceive('has')
             ->once()
-            ->with('pokemon')->andReturn(true);
-        Cache::shouldReceive('get')->once()->andReturn($this->stub);
+            ->with('all.pokemon')->andReturn(true);
+
+
+        Cache::shouldReceive('get')->once()->andReturn($this->allCached );
         // this response is cached
         Pokemon::all();
     }
@@ -55,7 +61,7 @@ class AllPokemonTest extends TestCaseWithApiCall
     {
         Cache::shouldReceive('has')
             ->once()
-            ->with('pokemon')->andReturn(false);
+            ->with('all.pokemon')->andReturn(false);
 
         Cache::shouldReceive('put')->andReturnTrue();
 
@@ -76,8 +82,8 @@ class AllPokemonTest extends TestCaseWithApiCall
 
         Cache::shouldReceive('has')
             ->once()
-            ->with('pokemon')->andReturn(true);
-        Cache::shouldReceive('get')->once()->andReturn($this->stub);
+            ->with('all.pokemon')->andReturn(true);
+        Cache::shouldReceive('get')->once()->andReturn($this->allCached);
         // this response is cached
         $all = Pokemon::all();
 
